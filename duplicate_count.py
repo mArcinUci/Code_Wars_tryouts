@@ -16,7 +16,7 @@ def duplicate_count(text):
         if test1[i] == test1[i+1]:
             repeating_letters.append(test1[i])
     ans = len(list(set(repeating_letters)))    
-    print(ans)
+    return ans
 
 
 
