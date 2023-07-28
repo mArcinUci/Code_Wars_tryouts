@@ -1,5 +1,5 @@
 def traffic_jam(main_road, side_streets):
-   the_line = []
+   final_line = []
    side_str_num_and_cars_on_it = []
 
    count_side_streets_cars = 0
@@ -16,26 +16,35 @@ def traffic_jam(main_road, side_streets):
    total_cars = len_main_road + count_side_streets_cars
    how_many_side_streets_occupied = len(side_str_num_and_cars_on_it)
 
-   while len(the_line) != total_cars:
+   while len(final_line) != total_cars:
+      count = 0
       if len(main_road) > 0:
-         the_line.append(main_road[0])
+         final_line.append(main_road[0])
          main_road = main_road[1:]
-
          for i in range(how_many_side_streets_occupied):
-            if side_str_num_and_cars_on_it[i][1] > 0:
-               if main_road[side_str_num_and_cars_on_it[i][0]-1] != side_str_num_and_cars_on_it[i][2]:
-                  main_road = main_road[:side_str_num_and_cars_on_it[i][0]] + str(side_str_num_and_cars_on_it[i][2]) + main_road[side_str_num_and_cars_on_it[i][0]:]
-                  side_str_num_and_cars_on_it[i][1] -= 1
-         
-   the_line = ''.join(the_line)
+            if count != 1:
+               if side_str_num_and_cars_on_it[i][1] > 0:   
+                  if main_road[side_str_num_and_cars_on_it[i][0]-1] != side_str_num_and_cars_on_it[i][2]:
+                     main_road = main_road[:side_str_num_and_cars_on_it[i][0]] + str(side_str_num_and_cars_on_it[i][2]) + main_road[side_str_num_and_cars_on_it[i][0]:]
+                     side_str_num_and_cars_on_it[i][1] -= 1
+                     count += 1
+      
+   final_line = ''.join(final_line)
+   final_line = final_line[:final_line.find('X')+1]   
 
-   
-   print(side_str_num_and_cars_on_it)
-   print(the_line)
+   return final_line
+
+
+
+
+print(traffic_jam("abcdefX", []), "abcdefX")
+print(traffic_jam("abcXdef", []), "abcX")
+print(traffic_jam("Xabcdef", []), "X")
  
 
-traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"])
-
+print(traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]))
+print(traffic_jam("abcdeXghi", ["","","CCCCC","","EEEEEEEEEE","FFFFFF","","","IIIIII"]))
 
 
 #traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]), "abcdBeBfBgBhBiBCjCkClCmCX")
+#test.assert_equals(traffic_jam("abcdeXghi", ["","","CCCCC","","EEEEEEEEEE","FFFFFF","","","IIIIII"]), "abcCdCeCECX")
