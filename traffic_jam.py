@@ -21,8 +21,8 @@ def traffic_jam(main_road, side_streets):
       if len(main_road) > 0:
          final_line.append(main_road[0])
          main_road = main_road[1:]
-         for i in range(how_many_side_streets_occupied):
-            if count != 1:
+         if count != 1:
+            for i in range(how_many_side_streets_occupied):   
                if side_str_num_and_cars_on_it[i][1] > 0:   
                   if main_road[side_str_num_and_cars_on_it[i][0]-1] != side_str_num_and_cars_on_it[i][2]:
                      main_road = main_road[:side_str_num_and_cars_on_it[i][0]] + str(side_str_num_and_cars_on_it[i][2]) + main_road[side_str_num_and_cars_on_it[i][0]:]
@@ -40,11 +40,14 @@ def traffic_jam(main_road, side_streets):
 print(traffic_jam("abcdefX", []), "abcdefX")
 print(traffic_jam("abcXdef", []), "abcX")
 print(traffic_jam("Xabcdef", []), "X")
- 
-
 print(traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]))
 print(traffic_jam("abcdeXghi", ["","","CCCCC","","EEEEEEEEEE","FFFFFF","","","IIIIII"]))
 
 
 #traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]), "abcdBeBfBgBhBiBCjCkClCmCX")
 #test.assert_equals(traffic_jam("abcdeXghi", ["","","CCCCC","","EEEEEEEEEE","FFFFFF","","","IIIIII"]), "abcCdCeCECX")
+
+#'abcCdCECFCECFEFEFEEFEIEIEEFIIeX' should equal 'abcCdCeCECX'
+#'abcdBeBfBgBhBCBiCCjCCklmX' should equal 'abcdBeBfBgBhBiBCjCkClCmCX'  
+# --> traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]), "abcdBeBfBgBhBiBCjCkClCmCX")
+   
