@@ -2,16 +2,15 @@ def solutions(s):
     ans = []
     alphabet = 'abcdefghijklmnoprstqrstuvwxyz'
     for i in range(len(s)):
-        count = len(s)
-        slice_s = s[i:count]
-        if slice_s in alphabet and count>i:
-            ans.append(slice_s)
-        else:
-            count -= 1
+        for x in range(i,len(s)+1):
+            slice_s = s[i:x]
+            if slice_s in alphabet and x > i:
+                ans.append(slice_s)
+
 
     return ans
 
-print(solutions('xabc'))
+print(solutions('jjjjjjjjklmnopqrstuv'))
 
 
 
