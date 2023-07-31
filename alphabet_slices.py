@@ -1,15 +1,19 @@
 def solutions(s):
     ans = []
+    count = len(s)
     alphabet = 'abcdefghijklmnoprstqrstuvwxyz'
-    count = 0
-    for i in s:
-        idx = alphabet.index(i)
-        if s[s.index(i) +1]:
-            if alphabet[idx+1] == s[s.index(i) +1]:
-                ans.append(s[s.index(i) +1])
+    for i in range(len(s)):
+        slice_s = s[i:count]
+        if slice_s in alphabet and count<=i:
+            ans.append(slice_s)
+        else:
+            count -= 1
+
+    if 'abc' in alphabet:
+        print(1)
     print(ans)
 
-solutions('abcxdef')
+solutions('xabc')
 
 
 
