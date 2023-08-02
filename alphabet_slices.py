@@ -1,28 +1,35 @@
 def solutions(s):
-    alphabet = 'abcdefghijklmnoprstqrstuvwxyz'
-    longest_i_string = []
-    slices = []
-    string_data = []
-    for i in range(len(s)):
-        for x in range(i,len(s)+1):   
-            slice_s = s[i:x]
-            if slice_s in alphabet and x > i and len(slice_s)>1:
-                longest_i_string.append([slice_s, x, x-i])
-    
-    for i in longest_i_string:
-        alphabet_string_ending = i[1]
-        slice_len = i[2]
-        slice_index = [x for x in range(alphabet_string_ending-slice_len, alphabet_string_ending)]       
-        string_data.append([i[0],slice_index])    
-    
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    s = s+'1'
+    ans = []
+    j =[]
+    for i in range(len(s)-1):
+        if (ord(s[i])+1 == ord(s[i+1])):
+            temporary = ''
+            ans.append(i)
+            temporary += str(s[i])
+            while (ord(s[i])+1 == ord(s[i+1])):
+                i+=1
+                ans.append(i)
+                temporary += str(s[i])
+            j.append([temporary])
+            
+                
+            print(temporary) 
+    print(j)     
+    ans = list(set(ans))
 
-    return string_data
 
-print(solutions('abcxy'))
+    return ans
 
 
-'''almost_proper_slice_prep = max(map(len,longest_i_string))
-    almost_proper_slice = [x for x in longest_i_string if len(x) == almost_proper_slice_prep]'''
+
+
+
+
+
+print(solutions('abcxdef'))
+
 
 '''('xabc',        'xcba'), 
     ('abcxdef',     'cbaxfed'), 
@@ -32,8 +39,3 @@ print(solutions('abcxy'))
     ('zyx',         'zyx'), 
     ('ppqqrr',      'pqprqr'), 
     ('gjaababbboo', 'gjabababboo'),'''
-
-
-'''for i in range(1,len(longest_i_string)):
-        if longest_i_string[i][1] == longest_i_string[i-1][1] and longest_i_string[i][2] > longest_i_string[i-1][2]:
-            slices.append(longest_i_string[i][0])'''
