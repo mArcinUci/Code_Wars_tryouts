@@ -3,27 +3,24 @@ of the sticks to accomplish this, and can throw away leftover pieces.'''
 
 
 def maxlen(L1,L2):
-    len_1 = L1
-    len_2 = L2
-    
-    if len_1 > len_2:
-        if 2*len_2 <= len_1:
-            return len_2
-        else:
-            for i in range(len_2):
-                x = (len_1 / 2) - i
-                if x <= len_2:
-                    return x
-    
-    if len_1 < len_2:
-        if 2*len_1 <= len_2:
-            return len_1
-        else:
-            for i in range(len_1):
-                x = (len_2 / 2) - i
-                if x <= len_1:
-                    return x
-    if len_1 == len_2:
-        return len_1 / 2
 
-print(maxlen(8,8))
+    if L1 == L2:
+        return L1 / 2
+
+    if L1 > L2 and L1/3 >= L2:
+        return L1/3
+    if L1 > L2 and L2*2 < L1:
+        return L2
+    if L1 > L2 and L1/2 < L2:
+        return L1/2
+    
+    if L2 > L1 and L2/3 >= L1:
+        return L2/3
+    if L2 > L1 and L1*2 < L2:
+        return L1
+    if L2 > L1 and L2/2 < L1:
+        return L1/2
+            
+
+
+print(maxlen(12,5))
