@@ -13,4 +13,4 @@ def is_divisible(*digits):
         return False
     
 
-print(is_divisible(12,6,3,2))
+print(is_divisible(12,6,3,2,1))
