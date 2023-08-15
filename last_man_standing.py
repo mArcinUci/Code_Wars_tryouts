@@ -28,16 +28,19 @@ def last_man_standing(n):
     if len(all_digits) == 1:
         return all_digits[0]
     if len(all_digits) == 2:
-        '''if count[-1] == 'R':
-            return all_digits[1]
-        if count[-1] == 'L':
-            return all_digits[0]'''
         half = n/2
         first_element_count = half - all_digits[0]
         second_element_count = half - all_digits[1]
-        if abs(first_element_count) > abs(second_element_count):
-            return all_digits[1]
+        if n>100:
+            if abs(first_element_count) > abs(second_element_count):
+                return all_digits[1]
+            else:
+                return all_digits[0]
         else:
-            return all_digits[0]
+            if count[-1] == 'R':
+               return all_digits[1]
+            if count[-1] == 'L':
+                return all_digits[0]
 
-print(last_man_standing(9))
+
+print(last_man_standing(1000))
