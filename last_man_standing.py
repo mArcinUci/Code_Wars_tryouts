@@ -11,6 +11,7 @@ def last_man_standing(n):
     while len(all_digits) > 2:
         next_element = all_digits[1]
         all_digits = all_digits[1:]
+        # change here --> if len > 1 ??
         all_digits = [x for x in all_digits if all_digits.index(x)%2 != all_digits.index(next_element)]
         count += 'L'
         print(f"cut from begining ------------->{all_digits}----------{count}")
@@ -27,10 +28,16 @@ def last_man_standing(n):
     if len(all_digits) == 1:
         return all_digits[0]
     if len(all_digits) == 2:
-        if count[-1] == 'R':
+        '''if count[-1] == 'R':
             return all_digits[1]
         if count[-1] == 'L':
+            return all_digits[0]'''
+        half = n/2
+        first_element_count = half - all_digits[0]
+        second_element_count = half - all_digits[1]
+        if abs(first_element_count) > abs(second_element_count):
+            return all_digits[1]
+        else:
             return all_digits[0]
 
-
-print(last_man_standing(1000))
+print(last_man_standing(9))
