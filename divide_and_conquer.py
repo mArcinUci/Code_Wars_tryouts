@@ -11,10 +11,8 @@ def consecutive_nums(lst, group_len):
         return False
     else:
         lst = sorted(lst)
-        for i in range(lst_len-1):
-            if lst[i] + 1 < lst[i+1]:
-                return False
-            else: return True
+        pass
+            
                        
         
     
