@@ -28,13 +28,14 @@ def consecutive_nums(lst, group_len):
                     if ordered_dict[dummy+1] < 0:
                         return False
         return True
-                       
-        
+                               
 print(consecutive_nums([1, 2, 3, 6, 2, 3, 4, 7, 8], 3))   
 print(consecutive_nums([5, 5, 7, 3, 3, 1, 1, 1, 2, 6, 6, 7, 2, 2, 3], 3))
 print(consecutive_nums([1, 3, 4, 5], 2))
+print(consecutive_nums([1, 2, 3, 3, 3, 3], 3))
 #True
 #False  (?????)
+#False
 #False
 
 a = sorted([5, 5, 7, 3, 3, 1, 1, 1, 2, 6, 6, 7, 2, 2, 3])
@@ -43,5 +44,3 @@ print(a) #[1, 1, 1, 2, 2, 2, 3, 3, 3, 5, 5, 6, 6, 7, 7]  ======> I do not know h
 
 # I do not get why this one is True:  consecutive_nums([1, 3, 5], 1), True)   (consecutive_nums([5, 6, 3, 4], 2), True
 # and why this one is False  consecutive_nums([1, 3, 4, 5], 2), False
-
-#and it do not pass this example    (consecutive_nums([1, 2, 3, 3, 3, 3], 3) -->should be: False
