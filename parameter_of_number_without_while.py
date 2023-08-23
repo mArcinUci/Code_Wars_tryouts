@@ -11,19 +11,8 @@ def parameter(n):
     for i in almost_product_of_digits_n:
         product_of_digits_n = product_of_digits_n * i
 
-    
-    if sum_of_digits_n > product_of_digits_n:
-        greater = sum_of_digits_n
-    else:
-        greater = product_of_digits_n
+    for currentPossibleLCM in range(max(sum_of_digits_n,product_of_digits_n), (sum_of_digits_n*product_of_digits_n)+1):
+         if((currentPossibleLCM % sum_of_digits_n == 0) and (currentPossibleLCM % product_of_digits_n == 0)):
+              return currentPossibleLCM
 
-    while True:
-        if greater % sum_of_digits_n == 0 and greater % product_of_digits_n == 0:
-            least_common_multiple = greater
-            break   
-        greater += 1    
-    
-    return least_common_multiple
-
-
-print(parameter(22))
+print(parameter(1234))
