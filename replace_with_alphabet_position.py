@@ -11,16 +11,14 @@ def alphabet_position(text):
     for i in text.lower():
         if i in alphabet:
             letters_position.append(alphabet.index(i))
-    #letters_position.reverse()    
+        
     for i in letters_position:
         answer += str(i)
         answer += ' '
 
     return answer.strip()
+
 print(alphabet_position("TkZaYoxZefLUtChoaDqJDHuDTxMLeYwwMvnxNFkOGJnovaorYHpRNTbTXHtaNlvZxXXYMnEmDRWfyleCoAEAKcrcmCoaPyvCajLl"))
-
-
-
 
 # "TkZaYoxZefLUtChoaDqJDHuDTxMLeYwwMvnxNFkOGJnovaorYHpRNTbTXHtaNlvZxXXYMnEmDRWfyleCoAEAKcrcmCoaPyvCajLl"
 #  '20 11 26 1 25 15 24 26 5 6 12 21 20 3 8 15 1 4 17 10 4 8 21 4 20 24 13 12 5 25 23 23 13 22 14 24 14 6 
