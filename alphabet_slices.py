@@ -1,41 +1,18 @@
 def solutions(s):
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    s = s+'1'
-    ans = []
-    j =[]
+    dummy = None
     for i in range(len(s)-1):
-        if (ord(s[i])+1 == ord(s[i+1])):
-            temporary = ''
-            ans.append(i)
-            temporary += str(s[i])
-            while (ord(s[i])+1 == ord(s[i+1])):
-                i+=1
-                ans.append(i)
-                temporary += str(s[i])
-            j.append([temporary])
-            
-                
-            print(temporary) 
-    print(j)     
-    ans = list(set(ans))
-
-
-    return ans
-
-
-
-
-
-
-
-print(solutions('abcxdef'))
-
-
-'''('xabc',        'xcba'), 
-    ('abcxdef',     'cbaxfed'), 
-    ('abcxyz',      'cbazyx'), 
-    ('zahimzmstaz', 'zaihmzmtsaz'), 
-    ('jjjjjjjjklmnopqrstuv', 'jjjjjjjvutsrqponmlkj'), 
-    ('zyx',         'zyx'), 
-    ('ppqqrr',      'pqprqr'), 
-    ('gjaababbboo', 'gjabababboo'),'''
+        if ord(s[i])+1 == ord(s[i+1]):
+            if dummy is None:
+                dummy = i
+        elif dummy is not None:
+            slice = s[dummy:i+1]
+            reversed_slice = slice[::-1]
+            s = s[:dummy] + reversed_slice + s[i+1:]
+            dummy = None
+    if dummy is not None:
+        last_slice = s[dummy:]
+        last_reversed_slice = last_slice[::-1]
+        s = s[:dummy]+last_reversed_slice
+        
+    return s
+print(solutions('ggabcggabcffbcdxyz'))
