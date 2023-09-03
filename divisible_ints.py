@@ -10,7 +10,7 @@ def get_count(n):
     for i in all_possible_ints_from_n:
         if int(n) % i == 0 and int(n) != i:
             answer +=1
-    print(all_possible_ints_from_n)
+
     return answer
 
 print(get_count(123))
