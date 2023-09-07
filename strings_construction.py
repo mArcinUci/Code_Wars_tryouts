@@ -18,9 +18,8 @@ def strings_construction(a, b):
             if x in how_many_letters_in_b.keys() and how_many_letters_in_b[x] > 0:
                 how_many_letters_in_b[x] -= 1
                 count_letters += 1
-            if count_letters == len(a):
-                count += 1
-    return count
+            
+    return count_letters//len(a)
 
 
-print(strings_construction('abcd','cbadeabc'))
+print(strings_construction('abcd','cbadeabcabcd'))
