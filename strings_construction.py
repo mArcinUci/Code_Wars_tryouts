@@ -5,28 +5,30 @@
 def strings_construction(a, b):
     how_many_letters_in_b = {}
     how_many_each_letters = []
+    how_many_letters_occurance_in_a = []
+    letters_in_a = []
+
     for i in b:
         if i in how_many_letters_in_b:
             how_many_letters_in_b[i] += 1
         else:
             how_many_letters_in_b[i] = 1
-    print(how_many_letters_in_b) 
-    print(how_many_each_letters)
-    print(len(b)/len(a))
-
+  
     for x in a:
         if x in how_many_letters_in_b.keys():
             how_many_each_letters.append(how_many_letters_in_b[x])
+            if x not in letters_in_a:
+                letters_in_a.append(x)
+                how_many_letters_occurance_in_a.append(a.count(x))
         else:
             return 0
-              
-    if min(how_many_each_letters) > len(b)//len(a):
+  
+    how_many_each_letters_finally = list(map(lambda x,y: x//y, how_many_each_letters, how_many_letters_occurance_in_a))#list(map(lambda x, y: x * y, list1, list2))        
+    if min(how_many_each_letters_finally) > len(b)//len(a): 
         return len(b)//len(a)
     else:
-        return min(how_many_each_letters)
+        return min(how_many_each_letters_finally)
 
 
-print(strings_construction("hnuqnpowym",'pzqwpqhmupmwmbymywumpnkwuqjoum'))
-# so 'n' is only 1 in b but 2 times in a, how to count that
-print(strings_construction("nlheprlp",'hheeppeerlpplherhnnlrhlrprpppellprnlnprrhlnrppnllh'))
-# same here 'l' is 10 times in b and 2 times in a
+print(f"should equal 1, and it shows {strings_construction('nbrbczc','cnrbbzccrbncbrn')}")
+print(f"should equal 4, and it shows {strings_construction('qfhggrf' ,'gffhgffqfgffgrwrffqgqgghrufgqfhorgffggghghqhhuhqfq')}")
