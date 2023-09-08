@@ -27,5 +27,6 @@ def strings_construction(a, b):
 
 
 print(strings_construction("hnuqnpowym",'pzqwpqhmupmwmbymywumpnkwuqjoum'))
-# so n is only 1 in b but 2 times in a, how to count that
+# so 'n' is only 1 in b but 2 times in a, how to count that
 print(strings_construction("nlheprlp",'hheeppeerlpplherhnnlrhlrprpppellprnlnprrhlnrppnllh'))
+# same here 'l' is 10 times in b and 2 times in a
