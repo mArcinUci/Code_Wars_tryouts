@@ -7,13 +7,10 @@ target will always be the sum of two different items from that array).'''
 
 
 def two_sum(numbers, target):
-    for i in numbers:
-        for j in numbers:
-            if j + i == target and numbers.index(i) != numbers.index(j):
-                return (numbers.index(i), numbers.index(j))
-            if i + j == target and j == i:
-                indexes = [x for x,y in enumerate(numbers) if y == i]
-                return tuple(indexes)
+    for i in range(len(numbers)):
+        for j in range(i+1,len(numbers)):
+            if numbers[i] + numbers[j] == target:
+                return (i,j)
 
 
             
