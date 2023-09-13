@@ -4,32 +4,37 @@ If, despite these measures, we still have players with identical rolls in the ex
 Given a list of scores, documented meticulously in the order of each player's participation in every round, determine and declare the name of the triumphant player who stands as the last one standing.'''
 
 
-def dice_game(scores):
-    winner = ['p1','p2', 'p3', 'p4']
+def dice_game(scores, winner=[]):
     overtime_1 = []
-    overtime_2 = []
-    overtime_3 = []
+    stamp = 4-len(winner)
+    next_round = scores[:stamp] #here i need to -= in every cycle
+    round_1_score = [sum(x) for x in next_round]
 
-    round_1 = scores[:4]
-
-    round_1_score = [sum(x) for x in round_1]
-    for i in  round_1_score:
+    for i in round_1_score:
         if min(round_1_score) == i:
             overtime_1.append(i)
     if len(overtime_1) == 1:
-        loosing_score = min(round_1)
-        del winner[round_1.index(loosing_score)]
+        loosing_score = min(next_round)
+        winner.append(next_round.index(loosing_score))
+    scores = scores[4:]
     if len(overtime_1) == 2:
-        loosing_score = [x for x in round_1 if sum(x) == overtime_1[0]]
+        loosing_score = [x for x in next_round if sum(x) == overtime_1[0]]
         if loosing_score[0][0] > loosing_score[1][0]:
-            del winner[round_1.index(loosing_score[1])]
+            winner.append(next_round.index(loosing_score[1]))            
         if loosing_score[0][0] < loosing_score[1][0]:
-            del winner[round_1.index(loosing_score[0])]
-
-
-    print(winner)    
+            winner.append(next_round.index(loosing_score[0]))
+        scores =  scores[6:]
+     #i think one more if should be added in case of situation where no player is canceled
     
-dice_game([(6, 2), (4, 5), (3, 4), (4, 3), (5, 4), (5, 5), (1, 5), (4, 3), (1, 5), (1, 5), (5, 6), (2, 2)])
+    print(winner)
+    if len(winner)==3:
+        return winner
+    dice_game(scores, winner)
+    
+
+   
+    
+dice_game([(6, 2), (4, 3), (3, 4), (5, 4), (3, 5), (1, 5), (4, 3), (1, 5), (1, 5), (5, 6), (2, 2)])
 
 
 
