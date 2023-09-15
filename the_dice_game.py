@@ -6,36 +6,35 @@ Given a list of scores, documented meticulously in the order of each player's pa
 
 def dice_game(scores, winner=[]):
     overtime_1 = []
-    stamp = 4-len(winner)
-    next_round = scores[:stamp] #here i need to -= in every cycle
-    round_1_score = [sum(x) for x in next_round]
-
-    for i in round_1_score:
-        if min(round_1_score) == i:
+    new_scores = []
+    stamp = (4-len(winner))
+    next_round = scores[:stamp]
+    next_round_score = [sum(x) for x in next_round]
+    print(next_round_score)
+    
+    if len(winner)==3:
+        return winner 
+    
+    for i in next_round_score:
+        if min(next_round_score) == i:
             overtime_1.append(i)
     if len(overtime_1) == 1:
         loosing_score = min(next_round)
         winner.append(next_round.index(loosing_score))
-    scores = scores[4:]
+        new_scores = scores[stamp:]
     if len(overtime_1) == 2:
         loosing_score = [x for x in next_round if sum(x) == overtime_1[0]]
         if loosing_score[0][0] > loosing_score[1][0]:
-            winner.append(next_round.index(loosing_score[1]))            
+            winner.append(next_round.index(loosing_score[1]))
+            new_scores =  scores[stamp:]           
         if loosing_score[0][0] < loosing_score[1][0]:
             winner.append(next_round.index(loosing_score[0]))
-        scores =  scores[6:]
-     #i think one more if should be added in case of situation where no player is canceled
+            new_scores =  scores[stamp:]
+        if loosing_score[0][0] == loosing_score[1][0]:
+            new_scores =  scores[stamp:]
+    print(f'----and the looser here is {winner}')
+     
+    dice_game(new_scores, winner)
     
-    print(winner)
-    if len(winner)==3:
-        return winner
-    dice_game(scores, winner)
-    
-
-   
-    
-dice_game([(6, 2), (4, 3), (3, 4), (5, 4), (3, 5), (1, 5), (4, 3), (1, 5), (1, 5), (5, 6), (2, 2)])
-
-
-
-    
+  
+print(dice_game([(6, 2), (4, 3), (3, 4), (5, 4), (3, 5), (1, 5), (43, 3), (1, 5), (1, 5), (5, 6), (2, 2)])) 
