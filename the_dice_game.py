@@ -13,7 +13,7 @@ def dice_game(scores, loosing_player=[]):
     next_round_score = [sum(x) for x in next_round]
 
     for i in next_round_score:
-        if min(next_round_score) == i:
+        if i == min(next_round_score):
             overtime_1.append(i)
     if len(overtime_1) == 1:
         loosing_score = min(next_round)
@@ -21,12 +21,11 @@ def dice_game(scores, loosing_player=[]):
             if i not in loosing_player:
                 loosing_player.append(i)
                 break
-        new_scores = scores[stamp:]
     
     if len(overtime_1) > 1:
         loosing_score = min(next_round)
         for i in next_round:
-            if i == min(next_round):
+            if i == loosing_score:
                 first_roll.append(i[0])
 
         smallest_first_roll = min(first_roll)
@@ -36,50 +35,18 @@ def dice_game(scores, loosing_player=[]):
                 if i not in loosing_player:
                     loosing_player.append(i)
                     break
-            new_scores = scores[stamp:]
-        else:
-            new_scores = scores[stamp:]
-
+    
+    new_scores = scores[stamp:]
     if len(loosing_player)==3:
         for i in range(1,5):
             if i not in loosing_player:
                 and_the_winner_is = 'p'+str(i)
+                print(loosing_player)
                 return and_the_winner_is
     else:
-        return dice_game(new_scores, loosing_player)
+       return dice_game(new_scores, loosing_player)
     
   
-print(dice_game([(1, 5), (3, 1), (2, 3), (5, 3), (1, 2), (1, 2), (6, 3), (2, 2), (6, 3), (2, 2), (5, 5), (3, 1), (3, 1), (6, 6), (6, 4), (5, 3), (3, 4), (6, 4)]))
+#print(dice_game([(1, 5), (3, 1), (2, 3), (5, 3), (1, 2), (1, 2), (6, 3), (2, 2), (6, 3), (2, 2), (5, 5), (3, 1), (3, 1), (6, 6), (6, 4), (5, 3), (3, 4), (6, 4)]))
 #print(dice_game([(5, 2), (2, 5), (5, 5), (2, 5), (6, 4), (6, 5), (6, 2), (6, 2), (3, 5), (6, 4), (4, 2), (5, 2), (3, 2), (6, 4), (1, 2), (5, 4), (5, 5)]))
 print(dice_game([(4, 4), (4, 3), (1, 1), (1, 1), (3, 1), (4, 5), (2, 6), (2, 3), (1, 5), (5, 3), (4, 5), (5, 2), (2, 1)]))
-
-
-'''
-if len(overtime_1)>2:
-    loosing_score = [x for x in next_round if sum(x) == overtime_1[0]]
-    print(f'------{loosing_score}')
-    for i in range(len(loosing_score)-1):
-        if loosing_score[i][0] < loosing_score[i+1][0]:
-            del loosing_score[i+1]
-    for i in range(len(loosing_score)-1):
-        if loosing_score[i][0] > loosing_score[i+1][0]:
-            del loosing_score[i]
-        
-    print(f'------{loosing_score}')
-
-if len(overtime_1) == 2:
-        loosing_score = [x for x in next_round if sum(x) == overtime_1[0]]
-        if loosing_score[0][0] > loosing_score[1][0]:
-            for i in range(next_round.index(loosing_score[1])+1, 5):
-                if i not in loosing_player:
-                    loosing_player.append(i)
-                    break
-            new_scores =  scores[stamp:]           
-        if loosing_score[0][0] < loosing_score[1][0]:
-            for i in range(next_round.index(loosing_score[0])+1, 5):
-                if i not in loosing_player:
-                    loosing_player.append(i)
-                    break
-            new_scores =  scores[stamp:]
-        if loosing_score[0][0] == loosing_score[1][0]:
-            new_scores =  scores[stamp:]'''
