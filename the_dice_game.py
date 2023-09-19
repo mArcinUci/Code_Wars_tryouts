@@ -4,11 +4,11 @@ If, despite these measures, we still have players with identical rolls in the ex
 Given a list of scores, documented meticulously in the order of each player's participation in every round, determine and declare the name of the triumphant player who stands as the last one standing.'''
 
 
-def dice_game(scores, loosing_player=[]):
+def dice_game(scores, players = ['p1', 'p2', 'p3', 'p4']):
     overtime_1 = []
     new_scores = []
     first_roll = []
-    stamp = (4-len(loosing_player))
+    stamp = len(players)
     next_round = scores[:stamp]
     next_round_score = [sum(x) for x in next_round]
 
@@ -16,37 +16,28 @@ def dice_game(scores, loosing_player=[]):
         if i == min(next_round_score):
             overtime_1.append(i)
     if len(overtime_1) == 1:
-        loosing_score = min(next_round)
-        for i in range(next_round.index(loosing_score), 5):
-            if i not in loosing_player:
-                loosing_player.append(i)
-                break
-    
+        loosing_score = min(next_round_score)
+        players.pop(next_round_score.index(loosing_score))
+            
     if len(overtime_1) > 1:
-        loosing_score = min(next_round)
+        loosing_score = min(next_round_score)
         for i in next_round:
-            if i == loosing_score:
+            if sum(i) == loosing_score:
                 first_roll.append(i[0])
 
         smallest_first_roll = min(first_roll)
         count_smallest_roll = [x for x in first_roll if x == smallest_first_roll]
         if len(count_smallest_roll) == 1:
-            for i in range(next_round.index(smallest_first_roll), 5):
-                if i not in loosing_player:
-                    loosing_player.append(i)
-                    break
+            players.pop(next_round.index((smallest_first_roll, loosing_score-smallest_first_roll)))
     
     new_scores = scores[stamp:]
-    if len(loosing_player)==3:
-        for i in range(1,5):
-            if i not in loosing_player:
-                and_the_winner_is = 'p'+str(i)
-                print(loosing_player)
-                return and_the_winner_is
+    if len(players) == 1:
+        return players[0]
     else:
-       return dice_game(new_scores, loosing_player)
+       return dice_game(new_scores, players)
     
   
-#print(dice_game([(1, 5), (3, 1), (2, 3), (5, 3), (1, 2), (1, 2), (6, 3), (2, 2), (6, 3), (2, 2), (5, 5), (3, 1), (3, 1), (6, 6), (6, 4), (5, 3), (3, 4), (6, 4)]))
-#print(dice_game([(5, 2), (2, 5), (5, 5), (2, 5), (6, 4), (6, 5), (6, 2), (6, 2), (3, 5), (6, 4), (4, 2), (5, 2), (3, 2), (6, 4), (1, 2), (5, 4), (5, 5)]))
-print(dice_game([(4, 4), (4, 3), (1, 1), (1, 1), (3, 1), (4, 5), (2, 6), (2, 3), (1, 5), (5, 3), (4, 5), (5, 2), (2, 1)]))
+#print(dice_game([(1, 5), (3, 1), (2, 3), (5, 3), (1, 2), (1, 2), (6, 3), (2, 2), (6, 3), (2, 2), (5, 5), (3, 1), (3, 1), (6, 6), (6, 4), (5, 3), (3, 4), (6, 4)]))  # p3
+#print(dice_game(([(6, 3), (5, 5), (2, 3), (6, 6), (2, 5), (5, 1), (4, 4), (2, 2), (1, 3)]))) # p1
+#print(dice_game([(4, 4), (4, 3), (1, 1), (1, 1), (3, 1), (4, 5), (2, 6), (2, 3), (1, 5), (5, 3), (4, 5), (5, 2), (2, 1)]))  #p3
+print(dice_game(([(3, 4), (2, 5), (5, 5), (2, 5), (6, 4), (6, 5), (6, 2), (6, 2), (3, 5), (6, 4), (4, 2), (5, 2), (3, 2), (6, 4), (1, 2), (5, 4), (5, 5)]))) # p2
