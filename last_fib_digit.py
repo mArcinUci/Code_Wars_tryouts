@@ -13,8 +13,10 @@ def last_fib_digit():
         return x3
     return get_next_number
 
-
+answer = ''
 fibonacci = last_fib_digit()
 for i in range(2, 50004):
     num = fibonacci()
-print(num)
+answer += str(num)
+new_ans = answer[-1]
+print(int(new_ans))
