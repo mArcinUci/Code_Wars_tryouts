@@ -18,7 +18,7 @@ print(fi(80000007)) # proper 8   gives  38496948.568532094
 print(fi(900000008)) # proper 1    gives  433090645.59861875
 print(fi(1000000009)) # proper 9     gives  481211828.58579093
 '''
-
+'''
 import math
 def fibona(n):
     x = (math.sqrt(5)+1)/2
@@ -26,8 +26,8 @@ def fibona(n):
     return num
 
 print(fibona(302))
-print(fibona(50004))
-
+print(fibona(50004)) # OverflowError: math range error
+'''
 
 
 
