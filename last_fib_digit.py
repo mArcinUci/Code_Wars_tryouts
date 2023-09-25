@@ -3,7 +3,17 @@
 You will just get much bigger numbers, so good luck bruteforcing your way through it ;)'''
 
 
+def fibo(n):
+    f1, f2 = 0, 1
+    for _ in range(n-1):
+        f1, f2 = f2, (f1+f2)%10
+    return f2
 
+print(fibo(80000007))
+
+
+
+'''
 def fib_digit(n):
     f=[1,1]
     for i in range(2,n):
@@ -11,9 +21,7 @@ def fib_digit(n):
     return f[-1]
 
 print(fib_digit(80000007))
-
-
-
+'''
 
 '''
 # the Pell's equation to p and q
@@ -29,8 +37,6 @@ def fib(n):
 
 print(fib(80000007))  # OverflowError: (34, 'Result too large')
 '''
-
-
 
 
 '''
