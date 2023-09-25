@@ -4,6 +4,35 @@ You will just get much bigger numbers, so good luck bruteforcing your way throug
 
 
 
+def fib_digit(n):
+    f=[1,1]
+    for i in range(2,n):
+        f.append((f[i-1]+f[i-2])  % 10 ) 
+    return f[-1]
+
+print(fib_digit(80000007))
+
+
+
+
+'''
+# the Pell's equation to p and q
+import math
+ 
+p = (1 + math.sqrt(5)) / 2
+q = (1 - math.sqrt(5)) / 2
+ 
+def fib(n):
+    i = n - 1
+    x = (p**i - q**i) / (p - q)
+    return int(x)
+
+print(fib(80000007))  # OverflowError: (34, 'Result too large')
+'''
+
+
+
+
 '''
 # it`s not my math level, and suposed to bo O(1) formula, it does not count properly
 import math
