@@ -7,6 +7,23 @@ For a = [3, 3, 2, 9, 7], the result should be [5, 4, 2, 1]
 '''
 
 
+def cut_the_ropes(arr):
+    answer = []
+    for _ in range(len(arr)):
+        if len(arr)>0:
+            answer.append(len(arr))
+            arr = [x-min(arr) for x in arr if (x-min(arr)>0)]
+    return answer
+
+print(cut_the_ropes([3, 3, 2, 9, 7]))
+print(cut_the_ropes(([1, 2, 3, 4, 3, 3, 2, 1])))
+
+
+
+
+
+
+'''
 def cut_the_ropes(arr, ans = None):
     if ans is None:
         ans = []
@@ -23,7 +40,6 @@ def cut_the_ropes(arr, ans = None):
         return cut_the_ropes(arr,ans)
     else:
         return ans
+'''
 
-print(cut_the_ropes([3, 3, 2, 9, 7]))
-print(cut_the_ropes(([1, 2, 3, 4, 3, 3, 2, 1])))
 
