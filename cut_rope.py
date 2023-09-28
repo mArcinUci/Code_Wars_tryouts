@@ -6,29 +6,44 @@ how many of each kind of rope?
 
 
 def cut_rope(length, m, n):
-    indexes = []
     answeres = {}
-    score_m = -1
-    score_n = -1
-    while score_m < length-m:
-        score_m = score_m + m
-        indexes.append(score_m)
-    while score_n < length-n:
-        score_n = score_n + n
-        indexes.append(score_n)
-    indexes.append(length)
-    indexes = list(set(indexes))
-    indexes.reverse()
+    indexes = [x for x in range(1,length+1) if x % m == 0 or x % n == 0]
+    if length not in indexes:
+        indexes.append(length)
+    indexes.append(0)
+    indexes.sort()
 
-    for i in range(len(indexes) -1):
-        rope_chunks = indexes[i] - indexes[i+1] 
+    for i in range(len(indexes)-1):
+        rope_chunks = indexes[i+1] - indexes[i]
         if rope_chunks in answeres:
             answeres[rope_chunks] += 1
         else:
             answeres[rope_chunks] = 1
+    answeres = dict(sorted(answeres.items()))
     final_answer = {str(f'{key}cm'): value for key, value in answeres.items()}
 
     return final_answer
 
-print(cut_rope( 6, 2, 3))
+print(cut_rope( 1, 7, 19))
 print(cut_rope( 7, 2, 3))
+
+
+'''
+def cut_rope(length, m, n):
+    from collections import defaultdict
+    p, h = 0, defaultdict(int)
+    for i in range(1, length + 1):
+        if i == length or i % m == 0 or i % n == 0:
+            h[f"{i - p}cm"] += 1
+            p = i
+    return h
+'''
+
+
+'''
+from collections import Counter
+def cut_rope(l, m, n):
+    a = sorted(set(range(0, l, m)) | set(range(0, l, n)) | {l})
+    c = Counter([y - x for x, y in zip(a, a[1:])])
+    return {f'{k}cm': v for k, v in c.items()}
+'''
