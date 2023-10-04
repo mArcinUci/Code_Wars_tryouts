@@ -12,9 +12,11 @@ def traffic_jam(main_road, side_streets):
         final_line.append(the_main_road[0])
         the_main_road = the_main_road[1:]
         for i in range(len(side_streets)):
-            if i >= len(main_road)-2:
-                print(f'---{len(final_line)} --i: {i}    ---side streets:{len(side_streets)}    ---len the main road {len(the_main_road)} =={the_main_road[-1]}=== ----side_str[i][0] {side_streets[i][0]}' )
-                break
+            if len(side_streets[i])>0 and i > len(the_main_road)-1:
+                if the_main_road[-1] != side_streets[i][0]:
+                    the_main_road.append([side_streets[i][0]])
+                    side_streets[i] = side_streets[i][1:]
+                    break
             if i == 0 and len(side_streets[0])>0 and side_streets[0][0] != final_line[-1]:
                the_main_road = [side_streets[0][0]] + the_main_road
                side_streets[i] = side_streets[0][1:]               
@@ -34,12 +36,12 @@ def traffic_jam(main_road, side_streets):
 
 
 
+# passed all tests except one : -----> 'abcdabcdefefghiabcdejklmX' should equal 'abcdfeefdgchbiaejdkclbmaX'
+
 #print(traffic_jam("abcdefX", []), "abcdefX")
 #print(traffic_jam("abcXdef", []), "abcX")
 #print(traffic_jam("Xabcdef", []), "X")
 #print(traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]), "abcdBeBfBgBhBiBCjCkClCmCX")
 #print(traffic_jam("abcdeXghi", ["","","CCCCC","","EEEEEEEEEE","FFFFFF","","","IIIIII"]), "abcCdCeCECX")
 #print(traffic_jam("abcdefghijklmX", ["","","","BBBBBB","","","","","CCCCC"]), "abcdBeBfBgBhBiBCjCkClCmCX")
-
-
-traffic_jam("abcdefghijklmnopqrstuvwX", ["AAA","BBB","CCC", "DDD","EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL", "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "VVV", "WWW"])
+#print(traffic_jam("abcdefghijklmnopqrstuvwX", ["AAA","BBB","CCC", "DDD","EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL", "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "VVV", "WWW"]))
