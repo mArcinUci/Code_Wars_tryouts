@@ -3,6 +3,59 @@
 You will just get much bigger numbers, so good luck bruteforcing your way through it ;)'''
 
 
+
+def fib_last_digit(n):
+    v1, v2, v3 = 1, 1, 0    
+    for rec in bin(n)[3:]:
+        calc = (v2*v2) % 10
+        v1, v2, v3 = (v1*v1+calc) % 10, ((v1+v3)*v2) % 10, (calc+v3*v3) % 10
+        if rec == '1': v1, v2, v3 = (v1+v2) % 10, v1, v2
+    return v2
+
+print(fib_last_digit(900000008))
+
+#other proper answeres from CodeWars
+'''
+def last_fib_digit(n):
+    """ well, it is periodic on 60 """
+    a = 0
+    b = 1
+    for _ in range(n%60):
+        a, b = b, (a+b)%10
+    return a
+'''
+
+'''
+def last_fib_digit(n):
+    return int('011235831459437077415617853819099875279651673033695493257291'[n%60])
+'''
+
+
+
+
+# MY OLD TRYOUTS
+# first (conscious) dynamic programming use, but recursion possible only 996 times
+'''
+def last_fib_digit(n, cache = {0:0, 1:1}):
+    if n in cache:
+        return cache[n]
+    
+    cache[n] = last_fib_digit(n-1,cache) + last_fib_digit(n-2, cache)
+    return cache[n]%10
+'''
+
+
+#wrong answer
+'''
+def fib(n): 
+    phi = (1 + 5 ** 0.5) / 2
+    fib_n = round(((phi** n) - (phi**-n) )/(5 ** .5))
+    return fib_n % 10
+print(fib(302))
+'''
+
+
+'''
 def fibo(n):
     f1, f2 = 0, 1
     for _ in range(n-1):
@@ -10,7 +63,7 @@ def fibo(n):
     return f2
 
 print(fibo(80000007))
-
+'''
 
 
 '''
