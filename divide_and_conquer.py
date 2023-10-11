@@ -8,15 +8,12 @@ def consecutive_nums(lst, group_len):
     second_list = lst
     sublist = []
     operation_counter = 0
-    print(f'sorted list before looks like: {sorted_lst}')
     bubble = int(len(second_list)/group_len + 1)
-    while bubble:
+    for _ in range(bubble):
         for i in sorted_lst:
             if len(sublist) == group_len or operation_counter == group_len:
                 for x in sublist:
                     sorted_lst.remove(x)
-                print(f'-------{sublist}-------')
-                print(f'sorted list after looks like: {sorted_lst}')
                 operation_counter = 0
                 sublist = []
                 break
@@ -35,12 +32,12 @@ def consecutive_nums(lst, group_len):
 
 
 print(consecutive_nums([1,3,4,2,6,7,9,10], 2))
-print(consecutive_nums([1,3,4,2,6,7,9,10,45], 2))
-print(consecutive_nums([1,2,8,9], 2)) 
-print(consecutive_nums([1, 2, 3, 3, 2, 3, 4, 7, 8], 3))   
-print(consecutive_nums([5, 5, 7, 3, 3, 1, 1, 1, 2, 6, 6, 7, 2, 2, 3], 3))
-print(consecutive_nums([1, 3, 4, 5], 2))
-print(consecutive_nums([1, 2, 3, 3, 3, 3], 3))
+#print(consecutive_nums([1,3,4,2,6,7,9,10,45], 2))
+#print(consecutive_nums([1,2,8,9], 2)) 
+#print(consecutive_nums([1, 2, 3, 3, 2, 3, 4, 7, 8], 3))   
+#print(consecutive_nums([5, 5, 7, 3, 3, 1, 1, 1, 2, 6, 6, 7, 2, 2, 3], 3))
+#print(consecutive_nums([1, 3, 4, 5], 2))
+#print(consecutive_nums([1, 2, 3, 3, 3, 3], 3))
 #True
 #False  
 #False
