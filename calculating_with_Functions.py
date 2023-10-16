@@ -16,6 +16,54 @@ eight(divided_by(three()))
 '''
 
 class Number:
+    def __init__(self, value = None):
+        self.value = value
+    def __call__(self, *args):
+        if args:
+            return args[0](self.value)
+        else:
+            return self.value
+def plus(x):
+    def add(y):
+        return y + x
+    return add
+
+def minus(x):
+    def subtract(y):
+        return y - x
+    return subtract
+
+def times(x):
+    def multiply(y):
+        return y * x
+    return multiply
+    
+def divide_by(x):
+    def divide(y):
+        return int(y/x) if x != 0 else 0
+    return divide
+
+zero = Number(0)
+one =  Number(1)
+two =  Number(2)
+three =  Number(3)
+four =  Number(4)
+five =  Number(5)
+six =  Number(6)
+seven =  Number(7)
+eight =  Number(8)
+nine =  Number(9)
+
+
+
+o = seven(divide_by(two()))
+print(o)
+
+
+
+
+'''
+class Number:
     def __init__(self, value=None):
         self.value = value
 
@@ -50,6 +98,7 @@ six = Number(6)
 seven = Number(7)
 eight = Number(8)
 nine = Number(9)
+'''
 
 
 '''
