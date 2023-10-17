@@ -1,17 +1,39 @@
 '''
 description on: https://www.codewars.com/kata/596f610441372ee0de00006e/train/python
 '''
+massage = 'abcdefghijkl'
+key = 'nico'
+chunk_size = len(key)
+ready_chunks = []
+sorted_key = sorted(key)
+new_order_in_chunks = [int(key.index(x)) for x in sorted_key]
 
 def de_nico(key, msg):
-    return ""
-massage = 'abcdefghijk'
-key = 'nico'
-f = list(enumerate(key))
-z = list(enumerate(sorted(key)))
+    pass
+   
+   
 
 
-print(f)
-print(z)
+
+def chunks(some_string, chunk_size):
+    string_size = len(some_string)
+    for x in range(0, string_size, chunk_size):
+        yield some_string[x: min(x+chunk_size, string_size)]
+
+for chunk in chunks(massage, chunk_size):
+    new_chunk = chunk
+    for i in new_order_in_chunks:
+        print(f'-------{new_chunk[new_order_in_chunks.index(i)]}--------')
+        print(chunk[i])    
+        new_chunk.replace(new_chunk[new_order_in_chunks.index(i)], chunk[i])
+        print(f'======={new_chunk}======')
+        #new_chunk[new_order_in_chunks.index(i)] = chunk[i]
+        break
+    ready_chunks.append(new_chunk)
+
+
+print(ready_chunks)
+
 
 '''
 my plan:
