@@ -9,6 +9,8 @@ def combs_non_empty_boxes(n,k):
     if k == 0:
         return 0
     
+
+# hint about solution: https://www.geeksforgeeks.org/python-combinations-of-elements-till-size-n-in-list/
     
     
     
