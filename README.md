@@ -1,4 +1,4 @@
-# Code_Wars_tryouts
+# Code_Wars_tryouts explanation
 
 this repo shows the history of my progress in learning PYTHON coding and also allowed me to become familiar with git and GitHub. The platform I used is [codewars.com](https://www.codewars.com/)
 
